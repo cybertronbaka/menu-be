@@ -14,7 +14,6 @@ module Mutations
       type Types::Custom::User
   
       def resolve(email: nil, mobile: nil, name: nil, address: nil, password: nil, password_confirmation: nil)
-        binding.pry
         Resolvers::CreateRestuarantOwner.new(
           email: email,
           mobile: mobile,
