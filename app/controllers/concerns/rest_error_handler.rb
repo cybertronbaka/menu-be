@@ -2,12 +2,18 @@ module RestErrorHandler
     def self.included(clazz)
         clazz.class_eval do
             rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
-            # rescue_from ::Unauthorized, with: :unauthorized
+            rescue_from Unauthenticated, with: :unauthenticated
+            rescue_from StandardError, with: :standard_error
         end
     end
 
     private
-    def unauthorized(error)
+    
+    def standard_error(error)
+        render_error(400, error.message)
+    end
+
+    def unauthenticated(error)
         render_error(401, error.message)
     end
 

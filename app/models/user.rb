@@ -6,4 +6,12 @@ class User < ApplicationRecord
 
   belongs_to :role
   has_one :profile
+
+  def super_admin?
+    role.id == 1
+  end
+
+  def restuarant_owner?
+    role.id == 2
+  end
 end

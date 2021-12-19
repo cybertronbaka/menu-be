@@ -12,10 +12,10 @@ module Api
             end
 
             def destroy
-                return render_error(401, "You need to Sign In or Sign Up to perform this action.") unless current_user
+                return (raise Unauthenticated.new) unless current_user
 
                 Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
-                render json: { data: { message: "Signed out successfully" }}, status: 200
+                render json: { data: { message: "Signed Out successfully" }}, status: 200
             end
 
             def respond_to

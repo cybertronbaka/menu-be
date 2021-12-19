@@ -2,9 +2,10 @@
 
 module Resolvers
     class BaseResolver
-        attr_accessor :params
+        attr_accessor :params, :context
 
-        def initialize(**args)
+        def initialize(context, args)
+            @context = context
             @params = args
         end
 

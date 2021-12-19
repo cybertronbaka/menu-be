@@ -14,14 +14,15 @@ module Mutations
       type Types::Custom::User
   
       def resolve(email: nil, mobile: nil, name: nil, address: nil, password: nil, password_confirmation: nil)
-        Resolvers::CreateRestuarantOwner.new(
-          email: email,
-          mobile: mobile,
-          name: name,
-          address: address,
-          password: password,
-          password_confirmation: password_confirmation
-        ).run
+        Resolvers::CreateRestuarantOwner.new(context, arguments).run
+      end
+
+      def ready?(**args)
+        user_required && authorized
+      end
+
+      def is_authorized?
+        is_super_admin?
       end
     end
   end
