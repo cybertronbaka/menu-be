@@ -31,3 +31,7 @@
 /public/*
 Gemfile.lock
 db/schema.rb
+/coverage/*
+/.idea/*
+.generators
+.rakeTasks

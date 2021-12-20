@@ -1,4 +1,6 @@
 class NyemenuBeSchema < GraphQL::Schema
+  include GraphqlErrorHandler
+
   mutation(Types::MutationType)
   query(Types::QueryType)
 
@@ -48,4 +50,8 @@ class NyemenuBeSchema < GraphQL::Schema
     full_global_id = "gid://#{GlobalID.app}/#{id}"
     GlobalID::Locator.locate(full_global_id)
   end
+
+  def self.render_error(code, message)
+    raise GraphQL::ExecutionError.new(message, extensions: { code: code })
+end
 end
