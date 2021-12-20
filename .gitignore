@@ -32,3 +32,4 @@
 Gemfile.lock
 db/schema.rb
 /coverage/*
+/.idea/*

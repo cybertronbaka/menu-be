@@ -4,7 +4,8 @@ module Types
             field :id, ID, null: false
             field :email, String, null: false
             field :mobile, String, null: false
-            field :profile, GraphQL::Types::JSON, null: false
+            field :created_at, GraphQL::Types::ISO8601DateTime, null: false
+            field :profile, ::Types::Custom::Profile, null: false
         end
     end
 end

@@ -10,3 +10,7 @@ def sign_out
     delete '/api/v1/users/sign_out'
     cookies.delete('_session_id')
 end
+
+def expect_no_gql_errors
+    expect(parsed[:errors]).to be_nil
+end

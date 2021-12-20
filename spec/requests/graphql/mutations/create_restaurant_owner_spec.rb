@@ -16,7 +16,11 @@ describe 'Mutations: CreateRestaurantOwner' do
                     }
                 ) {
                     id
-                    profile
+                    profile {
+                      id
+                      name
+                      address
+                    }
                 }
             }
         GQL
@@ -26,7 +30,7 @@ describe 'Mutations: CreateRestaurantOwner' do
         it 'super admin creates a restaurant owner' do
             sign_in(user)
             post '/graphql', params: { query: valid_mutation }
-            expect(status).to eq(200)
+            expect_no_gql_errors
             expect(parsed.dig(:data, :createRestuarantOwner)).to_not be_nil
             expect(User.count).to eq(2)
         end
@@ -34,7 +38,7 @@ describe 'Mutations: CreateRestaurantOwner' do
         it 'super admin creates a restaurant owner and can log in' do
             sign_in(user)
             post '/graphql', params: { query: valid_mutation }
-            expect(status).to eq(200)
+            expect_no_gql_errors
             expect(parsed.dig(:data, :createRestuarantOwner)).to_not be_nil
             expect(User.count).to eq(2)
             sign_out
@@ -59,7 +63,11 @@ describe 'Mutations: CreateRestaurantOwner' do
                         }
                     ) {
                         id
-                        profile
+                        profile {
+                          id
+                          name
+                          address
+                        }
                     }
                 }
             GQL
