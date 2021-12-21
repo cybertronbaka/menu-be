@@ -1,16 +1,28 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'simplecov'
-SimpleCov.start
+SimpleCov.start :rails do
+  add_filter 'app/graphql/nyemenu_be_schema.rb'
+  add_filter 'app/jobs/application_job.rb'
+  add_filter 'app/channels/application_cable/channel.rb'
+  add_filter 'app/channels/application_cable/connection.rb'
+  add_filter 'app/graphql/types/base_interface.rb'
+  add_filter 'app/graphql/types/base_scalar.rb'
+  add_filter 'app/graphql/types/base_union.rb'
+  add_filter 'app/graphql/types/node_type.rb'
+  add_filter 'app/mailers/application_mailer.rb'
+  add_filter 'app/controllers/graphql_controller.rb'
+  add_filter 'app/controllers/concerns/rest_error_handler.rb'
+end
 
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
-abort("The Rails environment is running in production mode!") if Rails.env.production?
+abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 require 'database_cleaner/active_record'
 
-Dir[Rails.root.join('spec/support/**/*.rb')].each{|f| require f}
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 DatabaseCleaner.strategy = :truncation
 # Add additional requires below this line. Rails is not loaded until this point!
@@ -72,7 +84,7 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  config.before :suite do
+  config.before :each do
     DatabaseCleaner.clean
     load(Rails.root.join('db/seeds/roles.rb'))
   end

@@ -1,4 +1,4 @@
-#frozen_string_literal: true
+# frozen_string_literal: true
 
 module Mutations
   class CreateRestuarantOwner < BaseMutation
@@ -13,7 +13,7 @@ module Mutations
       Resolvers::Mutations::CreateRestuarantOwner.new(context, arguments).run
     end
 
-    def ready?(**args)
+    def ready?(**_args)
       user_required && authorized
     end
 
@@ -22,4 +22,3 @@ module Mutations
     end
   end
 end
-  

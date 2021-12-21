@@ -13,7 +13,7 @@ module Resolvers
         User.where(role_id: role_id).order(sort_hash)
       end
 
-      def ready?(**args)
+      def ready?(**_args)
         user_required && authorized
       end
 
