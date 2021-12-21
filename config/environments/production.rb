@@ -44,6 +44,8 @@ Rails.application.configure do
   # Include generic and useful information about system operation, but avoid logging too much
   # information to avoid inadvertent exposure of personally identifiable information (PII).
   config.log_level = :info
+  config.assets.precompile = %w{application.js}
+  config.assets.digest  = true
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
