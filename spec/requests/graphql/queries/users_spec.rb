@@ -6,16 +6,22 @@ describe 'Mutations: CreateRestaurantOwner' do
   let!(:query) do
     <<~GQL
       query{
-          users(
-            roleName: restuarant_owner
-          ) {
-              id
-              profile {
-                id
-                name
-                address
-              }
+        users(
+          roleName: restuarant_owner
+        ) {
+          pageInfo {
+            totalCount
+            totalPages
+            limitValue
+            currentPage
           }
+          users {
+            id
+            profile {
+              name
+            }
+          }
+        }
       }
     GQL
   end
@@ -25,7 +31,7 @@ describe 'Mutations: CreateRestaurantOwner' do
       sign_in(user)
       post '/graphql', params: { query: query }
       expect_no_gql_errors
-      expect(parsed.dig(:data, :users).count).to eq(1)
+      expect(parsed.dig(:data, :users, :users).count).to eq(1)
     end
   end
 
@@ -33,7 +39,7 @@ describe 'Mutations: CreateRestaurantOwner' do
     it 'restaurant owners cannot read' do
       sign_in(owner_1)
       post '/graphql', params: { query: query }
-      expect(parsed[:data]).to be_nil
+      expect(parsed.dig(:data, :users)).to be_nil
       expect(parsed[:errors].first[:message]).to eq('You are not authorized to perform this action')
     end
   end

@@ -10,13 +10,21 @@ describe 'Queries: menu' do
     <<~GQL
       query{
         sections(menuId: #{menu.id}){
-          id
-          name
-          createdAt
-          updatedAt
-          menuId
-          items {
+          pageInfo{
+            totalCount
+            totalPages
+            limitValue
+            currentPage
+          }
+          sections{
             id
+            name
+            createdAt
+            updatedAt
+            menuId
+            items {
+              id
+            }
           }
         }
       }
@@ -29,7 +37,7 @@ describe 'Queries: menu' do
       post '/graphql', params: { query: query }
       expect_no_gql_errors
       expect(parsed[:data]).to_not be_nil
-      expect(parsed.dig(:data, :sections)).to_not be_nil
+      expect(parsed.dig(:data, :sections, :sections)).to_not be_nil
     end
   end
 end

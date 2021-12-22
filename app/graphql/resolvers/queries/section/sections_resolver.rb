@@ -4,14 +4,16 @@ module Resolvers
   module Queries
     module Section
       class SectionsResolver < BaseQueryResolver
-        type [Types::Custom::Section], null: false
+        include GqlPagination
+
+        type Types::Custom::SectionList, null: false
 
         argument :menu_id, ID, required: true
 
-        def resolve(menu_id: nil)
+        def resolve(**args)
           raise Unauthorized unless owner?
 
-          ::Section.where(menu_id: menu_id).order(rank: :asc)
+          paginate(::Section.where(menu_id: args[:menu_id]).order(rank: :asc), 'sections')
         end
 
         def ready?(**_args)
