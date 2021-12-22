@@ -18,5 +18,7 @@ module Types
     field :edit_item, mutation: Mutations::Item::EditItem
     field :delete_item, mutation: Mutations::Item::DeleteItem
 
+    # Table
+    field :create_table, mutation: Mutations::Table::CreateTable
   end
 end

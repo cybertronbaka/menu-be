@@ -3,6 +3,7 @@
 class Menu < ApplicationRecord
   belongs_to :user
   has_many :sections
+  has_many :tables
 
   validates_with MenuCountValidator, on: :create
 
@@ -10,5 +11,6 @@ class Menu < ApplicationRecord
 
   def destroy_sections
     sections.destroy_all
+    tables.destroy_all
   end
 end
