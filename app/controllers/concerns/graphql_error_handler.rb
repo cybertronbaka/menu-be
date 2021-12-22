@@ -7,7 +7,7 @@ module GraphqlErrorHandler
         render_error('NOT_FOUND', err.message)
       end
       rescue_from ActiveRecord::RecordInvalid do |err, _obj, _args, _ctx, _field|
-        render_error('RECORD_INVALID', err.message)
+        render_error('RECORD_INVALID', err.message.sub('Validation failed: ', ''))
       end
       rescue_from Unauthenticated do |err, _obj, _args, _ctx, _field|
         render_error('UNAUTHENTICATED', err.message)
