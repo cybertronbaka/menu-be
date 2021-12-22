@@ -3,7 +3,7 @@
 module Mutations
   module Menu
     class CreateMenu < BaseMutation
-      argument :menu, Types::Arguments::Menu, required: true
+      argument :menu, Types::Arguments::MenuAttributes, required: true
 
       type Types::Custom::Menu
 
@@ -16,7 +16,7 @@ module Mutations
       end
 
       def is_authorized?
-        is_super_admin? || is_restuarant_owner?
+        is_restuarant_owner?
       end
     end
   end

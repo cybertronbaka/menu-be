@@ -3,8 +3,8 @@
 module GraphqlErrorHandler
   def self.included(clazz)
     clazz.class_eval do
-      rescue_from ActiveRecord::RecordNotFound do |_err, _obj, _args, _ctx, field|
-        render_error('NOT_FOUND', "#{field.type.unwrap.graphql_name} not found")
+      rescue_from ActiveRecord::RecordNotFound do |err, _obj, _args, _ctx, field|
+        render_error('NOT_FOUND', err.message)
       end
       rescue_from ActiveRecord::RecordInvalid do |err, _obj, _args, _ctx, _field|
         render_error('RECORD_INVALID', err.message)
