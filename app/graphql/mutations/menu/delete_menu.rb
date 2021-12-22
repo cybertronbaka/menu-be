@@ -2,13 +2,13 @@
 
 module Mutations
   module Menu
-    class CreateMenu < BaseMutation
-      argument :menu, Types::Arguments::MenuAttributes, required: true
+    class DeleteMenu < BaseMutation
+      argument :id, ID, required: true
 
       type Types::Custom::Menu
 
-      def resolve(menu: nil)
-        Resolvers::Mutations::Menu::CreateMenu.new(context, arguments).run
+      def resolve(id: nil)
+        Resolvers::Mutations::Menu::DeleteMenu.new(context, arguments).run
       end
 
       def ready?(**_args)

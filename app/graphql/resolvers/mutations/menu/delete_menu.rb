@@ -2,22 +2,19 @@
 
 module Resolvers
   module Mutations
-    module Section
-      class CreateSection < BaseMutationResolver
+    module Menu
+      class DeleteMenu < BaseMutationResolver
         def run
           raise Unauthorized unless owner?
 
-          section
+          menu.destroy!
+          menu
         end
 
         private
 
-        def section
-          @section ||= ::Section.create!(**params[:section].as_json, menu: menu)
-        end
-
         def menu
-          @menu ||= ::Menu.find(params[:menu_id])
+          @menu ||= ::Menu.find(params[:id].to_i)
         end
 
         def owner?

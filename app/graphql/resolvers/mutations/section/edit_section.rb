@@ -7,7 +7,7 @@ module Resolvers
         def run
           raise Unauthorized unless owner?
 
-          section.update!(**params[:section])
+          section.update!(**params[:section].as_json)
           section.reload
         end
 

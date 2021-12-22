@@ -5,6 +5,8 @@ module Types
 
     #Menu
     field :create_menu, mutation: Mutations::Menu::CreateMenu
+    field :edit_menu, mutation: Mutations::Menu::EditMenu
+    field :delete_menu, mutation: Mutations::Menu::DeleteMenu
 
     # Section
     field :create_section, mutation: Mutations::Section::CreateSection
