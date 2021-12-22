@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-    include AuthHandler
+  include AuthHandler
 
-    attr_accessor :current_user
+  attr_accessor :current_user
 end

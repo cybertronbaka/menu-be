@@ -2,21 +2,21 @@ require 'rails_helper'
 
 describe 'Mutations: CreateRestaurantOwner' do
   let!(:user) { create(:user) }
-  let!(:owner_1) { create(:user, :restuarant_owner)}
+  let!(:owner_1) { create(:user, :restuarant_owner) }
   let!(:query) do
     <<~GQL
-        query{
-            users(
-              roleName: restuarant_owner
-            ) {
+      query{
+          users(
+            roleName: restuarant_owner
+          ) {
+              id
+              profile {
                 id
-                profile {
-                  id
-                  name
-                  address
-                }
-            }
-        }
+                name
+                address
+              }
+          }
+      }
     GQL
   end
 

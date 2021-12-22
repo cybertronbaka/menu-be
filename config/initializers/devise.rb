@@ -28,7 +28,7 @@ Devise.setup do |config|
   config.navigational_formats = [:json]
   config.warden do |manager|
     manager.failure_app = Devise::CustomFailureApp
- end
+  end
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
