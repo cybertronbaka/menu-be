@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_18_155412) do
+ActiveRecord::Schema.define(version: 2021_12_21_192358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "menus", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_menus_on_user_id"
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.string "name", null: false
@@ -24,10 +33,28 @@ ActiveRecord::Schema.define(version: 2021_12_18_155412) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
+  create_table "restrictions", force: :cascade do |t|
+    t.integer "restriction_type", default: 0, null: false
+    t.string "value", null: false
+    t.bigint "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_restrictions_on_user_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "rank", null: false
+    t.bigint "menu_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["menu_id"], name: "index_sections_on_menu_id"
   end
 
   create_table "users", force: :cascade do |t|

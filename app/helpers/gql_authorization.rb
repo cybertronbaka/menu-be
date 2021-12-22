@@ -6,7 +6,7 @@ module GqlAuthorization
   end
 
   def authorized
-    return ( raise Unauthorized ) unless is_authorized?
+    return (raise Unauthorized) unless is_authorized?
 
     true
   end

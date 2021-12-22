@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   belongs_to :role
   has_one :profile
+  has_many :menus
+  has_many :restrictions
 
   def super_admin?
     role.id == 1

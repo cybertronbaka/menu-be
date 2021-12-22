@@ -33,7 +33,7 @@ describe 'Mutations: CreateRestaurantOwner' do
   context 'Success' do
     it 'super admin creates a restaurant owner' do
       sign_in(user)
-      post '/graphql', params: {query: valid_mutation}
+      post '/graphql', params: { query: valid_mutation }
       expect_no_gql_errors
       expect(parsed.dig(:data, :createRestuarantOwner)).to_not be_nil
       expect(User.count).to eq(2)
@@ -41,7 +41,7 @@ describe 'Mutations: CreateRestaurantOwner' do
 
     it 'super admin creates a restaurant owner and can log in' do
       sign_in(user)
-      post '/graphql', params: {query: valid_mutation}
+      post '/graphql', params: { query: valid_mutation }
       expect_no_gql_errors
       expect(parsed.dig(:data, :createRestuarantOwner)).to_not be_nil
       expect(User.count).to eq(2)
@@ -83,7 +83,7 @@ describe 'Mutations: CreateRestaurantOwner' do
 
     it 'email already used' do
       sign_in(user)
-      post '/graphql', params: {query: email_used_mutation}
+      post '/graphql', params: { query: email_used_mutation }
       expect(status).to eq(200)
       expect(parsed.dig(:data, :createRestuarantOwner)).to be_nil
       expect(parsed[:errors].first[:message]).to eq('Validation failed: Email has already been taken')
@@ -92,7 +92,7 @@ describe 'Mutations: CreateRestaurantOwner' do
 
     it 'restaurant owner cannot create user' do
       sign_in(owner)
-      post '/graphql', params: {query: valid_mutation}
+      post '/graphql', params: { query: valid_mutation }
       expect(status).to eq(200)
       expect(parsed.dig(:data, :createRestuarantOwner)).to be_nil
       expect(parsed[:errors].first[:message]).to eq('You are not authorized to perform this action')
@@ -100,7 +100,7 @@ describe 'Mutations: CreateRestaurantOwner' do
     end
 
     it 'user should be present' do
-      post '/graphql', params: {query: valid_mutation}
+      post '/graphql', params: { query: valid_mutation }
       expect(status).to eq(200)
       expect(parsed.dig(:data, :createRestuarantOwner)).to be_nil
       expect(parsed[:errors].first[:message]).to eq('You need to sign in or sign up to perform this action.')
