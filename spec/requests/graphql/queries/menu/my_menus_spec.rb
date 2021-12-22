@@ -10,17 +10,25 @@ describe 'Queries: myMenus' do
     <<~GQL
       query{
         myMenus{
-          id
-          name
-          description
-          createdAt
-          updatedAt
-          userId
-          sections {
+          pageInfo{
+            totalCount
+            totalPages
+            limitValue
+            currentPage
+          }
+          menus {
             id
-            items {
+            name
+            description
+            createdAt
+            updatedAt
+            userId
+            sections {
               id
-            }
+              items {
+                id
+              }
+          }
           }
         }
       }
@@ -33,7 +41,7 @@ describe 'Queries: myMenus' do
       post '/graphql', params: { query: query }
       expect_no_gql_errors
       expect(parsed[:data]).to_not be_nil
-      expect(parsed.dig(:data, :myMenus).count).to eq(1)
+      expect(parsed.dig(:data, :myMenus, :menus).count).to eq(1)
     end
   end
 end

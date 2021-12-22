@@ -4,7 +4,8 @@ module Resolvers
   module Queries
     module Item
       class ItemsResolver < BaseQueryResolver
-        type [Types::Custom::Item], null: false
+        include GqlPagination
+        type Types::Custom::ItemList, null: false
 
         argument :section_id, ID, required: true
 
@@ -13,7 +14,7 @@ module Resolvers
         def resolve(section_id: nil)
           raise Unauthorized unless owner?
 
-          ::Item.where(section_id: section_id).order(rank: :asc)
+          paginate(::Item.where(section_id: section_id).order(rank: :asc), 'items')
         end
 
         def ready?(**_args)

@@ -11,16 +11,24 @@ describe 'Queries: items' do
     <<~GQL
       query{
         items(sectionId: #{section.id}){
-          id
-          name
-          description
-          rank
-          status
-          price
-          pictures
-          createdAt
-          updatedAt
-          sectionId
+          pageInfo{
+            totalCount
+            totalPages
+            limitValue
+            currentPage
+          }
+          items{
+            id
+            name
+            description
+            rank
+            status
+            price
+            pictures
+            createdAt
+            updatedAt
+            sectionId
+          }
         }
       }
     GQL
@@ -32,8 +40,8 @@ describe 'Queries: items' do
       post '/graphql', params: { query: query }
       expect_no_gql_errors
       expect(parsed[:data]).to_not be_nil
-      expect(parsed.dig(:data, :items).count).to eq(2)
-      expect(parsed.dig(:data, :items).pluck(:id)).to match_array(%w[2 1])
+      expect(parsed.dig(:data, :items, :items).count).to eq(2)
+      expect(parsed.dig(:data, :items, :items).pluck(:id)).to match_array(%w[2 1])
     end
   end
 end
