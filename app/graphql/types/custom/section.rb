@@ -7,6 +7,7 @@ module Types
       field :created_at, GraphQL::Types::ISO8601DateTime, null: false
       field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
       field :menu_id, ID, null: false
+      field :items, [Types::Custom::Item], null: true
     end
   end
 end
