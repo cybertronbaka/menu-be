@@ -3,7 +3,7 @@
 module RankConcern
   extend ActiveSupport::Concern
   included do
-    before_create :set_rank
+    before_create :set_rank, unless: :rank
     validates_with RankValidator, if: :rank_changed?, on: :update
   end
 
