@@ -86,7 +86,7 @@ describe 'Mutations: CreateRestaurantOwner' do
       post '/graphql', params: { query: email_used_mutation }
       expect(status).to eq(200)
       expect(parsed.dig(:data, :createRestuarantOwner)).to be_nil
-      expect(parsed[:errors].first[:message]).to eq('Validation failed: Email has already been taken')
+      expect(parsed[:errors].first[:message]).to eq('Email has already been taken')
       expect(User.count).to eq(2)
     end
 

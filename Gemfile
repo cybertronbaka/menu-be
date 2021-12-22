@@ -26,6 +26,7 @@ gem 'bootsnap', '>= 1.4.4', require: false
 gem 'devise'
 gem 'graphiql-rails'
 gem 'graphql'
+gem 'kaminari'
 gem 'rack-cors'
 
 group :development, :test do

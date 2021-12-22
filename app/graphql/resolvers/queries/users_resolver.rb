@@ -1,16 +1,18 @@
 module Resolvers
   module Queries
     class UsersResolver < BaseQueryResolver
-      type [Types::Custom::User], null: false
+      include GqlPagination
+
+      type Types::Custom::UserList, null: true
 
       argument :order_by, Types::Arguments::Users::OrderBy, required: false
       argument :order_direction, Types::Arguments::OrderDirection, required: false
       argument :query, String, required: false
       argument :role_name, Types::Arguments::RoleName, required: true
 
-      def resolve(role_name: nil, query: nil, order_by: nil, order_direction: nil)
+      def resolve(**args)
         # TODO: Search to be implemented
-        User.where(role_id: role_id).order(sort_hash)
+        paginate(User.where(role_id: role_id).order(sort_hash),'users')
       end
 
       def ready?(**_args)

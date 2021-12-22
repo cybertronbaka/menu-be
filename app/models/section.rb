@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
 class Section < ApplicationRecord
+  include RankConcern
+
   belongs_to :menu
+  has_many :items
 
   validates_presence_of :name
 
-  before_create :set_rank, unless: :rank
+  after_destroy :destroy_items
 
-  def set_rank
-    self.rank = menu.sections.count + 1
+  def destroy_items
+    items.destroy_all
   end
 end
