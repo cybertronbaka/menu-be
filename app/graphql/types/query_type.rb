@@ -13,6 +13,7 @@ module Types
     # Menu
     field :my_menus, resolver: Resolvers::Queries::Menu::MenusResolver
     field :menu, resolver: Resolvers::Queries::Menu::MenuResolver
+    field :menu_by_token, resolver: Resolvers::Queries::Menu::MenuByTokenResolver
 
     # Section
     field :sections, resolver: Resolvers::Queries::Section::SectionsResolver
@@ -21,5 +22,9 @@ module Types
     # Items
     field :items, resolver: Resolvers::Queries::Item::ItemsResolver
     field :item, resolver: Resolvers::Queries::Item::ItemResolver
+
+    # Table
+    field :tables, resolver: Resolvers::Queries::Table::TablesResolver
+    field :table, resolver: Resolvers::Queries::Table::TableResolver
   end
 end
