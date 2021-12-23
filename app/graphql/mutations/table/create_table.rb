@@ -8,7 +8,7 @@ module Mutations
 
       type Types::Custom::Table
 
-      def resolve(menu_id: nil, section: nil)
+      def resolve(menu_id: nil, table: nil)
         Resolvers::Mutations::Table::CreateTable.new(context, arguments).run
       end
 
