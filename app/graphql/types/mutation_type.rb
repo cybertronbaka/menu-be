@@ -22,5 +22,7 @@ module Types
     # field :create_table, mutation: Mutations::Table::CreateTable
     # field :delete_table, mutation: Mutations::Table::DeleteTable
 
+    # Order
+    field :create_order, mutation: Mutations::Order::CreateOrder
   end
 end
