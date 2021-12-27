@@ -30,5 +30,9 @@ module Types
     # Order
     field :orders, resolver: Resolvers::Queries::Order::OrdersResolver
     field :order, resolver: Resolvers::Queries::Order::OrderResolver
+
+    # OrderItem
+    field :order_items, resolver: Resolvers::Queries::OrderItem::OrderItemsResolver
+    field :order_item, resolver: Resolvers::Queries::OrderItem::OrderItemResolver
   end
 end
