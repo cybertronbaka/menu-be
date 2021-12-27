@@ -42,7 +42,6 @@ describe 'Queries: OrderItems' do
     it 'lists' do
       sign_in(owner1)
       post '/graphql', params: { query: query }
-      binding.pry
       expect_no_gql_errors
       expect(parsed.dig(:data, :orderItems, :orderItems).count).to eq(1)
     end
