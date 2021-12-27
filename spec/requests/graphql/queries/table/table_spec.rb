@@ -18,7 +18,7 @@ describe 'Queries: item' do
   end
 
   context 'Success' do
-    it 'Listing Items' do
+    xit 'Listing Items' do
       sign_in(owner1)
       post '/graphql', params: { query: query }
       expect_no_gql_errors

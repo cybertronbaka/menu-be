@@ -19,8 +19,16 @@ module Types
     field :delete_item, mutation: Mutations::Item::DeleteItem
 
     # Table
-    field :create_table, mutation: Mutations::Table::CreateTable
-    field :delete_table, mutation: Mutations::Table::DeleteTable
+    # field :create_table, mutation: Mutations::Table::CreateTable
+    # field :delete_table, mutation: Mutations::Table::DeleteTable
 
+    # Order
+    field :create_order, mutation: Mutations::Order::CreateOrder
+    field :edit_order, mutation: Mutations::Order::EditOrder
+    field :delete_order, mutation: Mutations::Order::DeleteOrder
+
+    # Order Item
+    field :edit_order_item, mutation: Mutations::OrderItem::EditOrderItem
+    field :delete_order_item, mutation: Mutations::OrderItem::DeleteOrderItem
   end
 end

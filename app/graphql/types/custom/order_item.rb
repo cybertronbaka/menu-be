@@ -2,15 +2,14 @@
 
 module Types
   module Custom
-    class Menu < BaseObject
+    class OrderItem < BaseObject
       field :id, ID, null: false
-      field :name, String, null: true
-      field :description, String, null: true
-      field :qr_code, String, null: false
+      field :status, String, null: false
+      field :quantity, Integer, null: false
+      field :item, Types::Custom::Item, null: false
+      field :order, Types::Custom::Order, null: false
       field :created_at, GraphQL::Types::ISO8601DateTime, null: false
       field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
-      field :user_id, ID, null: false
-      field :sections, [Types::Custom::Section], null: true
     end
   end
 end

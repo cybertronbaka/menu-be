@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_one :profile
   has_many :menus
   has_many :restrictions
+  has_many :orders, class_name: 'Order', foreign_key: :restaurant_owner_id, primary_key: :id
 
   def super_admin?
     role.id == 1
