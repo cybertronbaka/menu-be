@@ -26,5 +26,9 @@ module Types
     # Table
     # field :tables, resolver: Resolvers::Queries::Table::TablesResolver
     # field :table, resolver: Resolvers::Queries::Table::TableResolver
+
+    # Order
+    field :orders, resolver: Resolvers::Queries::Order::OrdersResolver
+    field :order, resolver: Resolvers::Queries::Order::OrderResolver
   end
 end
