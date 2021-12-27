@@ -24,7 +24,7 @@ module Types
     field :item, resolver: Resolvers::Queries::Item::ItemResolver
 
     # Table
-    field :tables, resolver: Resolvers::Queries::Table::TablesResolver
-    field :table, resolver: Resolvers::Queries::Table::TableResolver
+    # field :tables, resolver: Resolvers::Queries::Table::TablesResolver
+    # field :table, resolver: Resolvers::Queries::Table::TableResolver
   end
 end

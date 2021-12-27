@@ -30,7 +30,7 @@ describe 'Mutations: CreateTable' do
   end
 
   context 'Success' do
-    it 'Creates a Table' do
+    xit 'Creates a Table' do
       sign_in(owner1)
       post '/graphql', params: { query: valid_mutation }
       expect_no_gql_errors
@@ -41,7 +41,7 @@ describe 'Mutations: CreateTable' do
   end
 
   context 'Failure' do
-    it 'Not found' do
+    xit 'Not found' do
       sign_in(owner1)
       post '/graphql', params: { query: invalid_mutation }
       expect(parsed[:errors].first.dig(:extensions, :code)).to eq('NOT_FOUND')

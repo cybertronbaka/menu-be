@@ -9,7 +9,7 @@ module Resolvers
         argument :token, String, required: true
 
         def resolve(token: nil)
-          ::Table.find_by!(token: arguments[:token].to_s).menu
+          ::Menu.find_by!(token: arguments[:token].to_s)
         end
       end
     end
