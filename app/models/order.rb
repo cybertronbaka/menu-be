@@ -2,6 +2,7 @@
 
 class Order < ApplicationRecord
   validates_presence_of :table_no, :total, :status
+  validates :order_items, length: { minimum: 1 }
 
   enum status: { pending: 0, served: 1, paid: 2, cancelled: 3 }
 

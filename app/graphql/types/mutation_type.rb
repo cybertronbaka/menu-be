@@ -24,5 +24,6 @@ module Types
 
     # Order
     field :create_order, mutation: Mutations::Order::CreateOrder
+    field :edit_order, mutation: Mutations::Order::EditOrder
   end
 end
