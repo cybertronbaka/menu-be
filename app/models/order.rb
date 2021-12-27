@@ -7,7 +7,7 @@ class Order < ApplicationRecord
   enum status: { pending: 0, served: 1, paid: 2, cancelled: 3 }
 
   belongs_to :restaurant_owner, class_name: 'User', foreign_key: :restaurant_owner_id, primary_key: :id
-  has_many :order_items
+  has_many :order_items, dependent: :destroy
 
   after_create :calculate_total
 
