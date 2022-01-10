@@ -23,6 +23,7 @@ require 'rspec/rails'
 require 'database_cleaner/active_record'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+require 'swagger_helper'
 
 DatabaseCleaner.strategy = :truncation
 # Add additional requires below this line. Rails is not loaded until this point!
