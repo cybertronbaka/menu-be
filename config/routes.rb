@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
 
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   scope 'api/v1' do
     devise_for :users, controllers: {
       sessions: 'api/v1/sessions'

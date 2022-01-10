@@ -1,0 +1,120 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/pictures":
+    post:
+      summary: Upload Picture
+      tags:
+      - Picture
+      parameters: []
+      responses:
+        '200':
+          description: Uploads picture
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  url:
+                    type: string
+                    example: the_url
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                picture:
+                  type: object
+                  properties:
+                    image:
+                      type: string
+                      example: The Image
+  "/api/v1/users/sign_in":
+    post:
+      summary: Signs in
+      tags:
+      - Auth
+      parameters: []
+      responses:
+        '200':
+          description: signs in
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: Signed In succesfully!
+        '401':
+          description: Could not sign in
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      oneOf:
+                      - type: string
+                        example: Invalid Email or password.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                      example: the email
+                    password:
+                      type: string
+                      example: the password
+  "/api/v1/users/sign_out":
+    delete:
+      summary: Signs Out
+      tags:
+      - Auth
+      responses:
+        '200':
+          description: signs out
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: Signed Out successfully
+        '401':
+          description: does not sign out
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  errors:
+                    type: array
+                    items:
+                      oneOf:
+                      - type: string
+                        example: You need to sign in or sign up before continuing.
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com

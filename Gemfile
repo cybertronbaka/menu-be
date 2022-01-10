@@ -29,6 +29,7 @@ gem 'dotenv-rails'
 gem 'graphql'
 gem 'kaminari'
 gem 'rack-cors'
+gem 'rswag'
 gem 'rqrcode'
 gem 'shrine'
 
@@ -39,6 +40,7 @@ group :development, :test do
   gem 'faker'
   gem 'graphiql-rails'
   gem 'pry'
+  gem 'rswag-specs'
 end
 
 group :test do

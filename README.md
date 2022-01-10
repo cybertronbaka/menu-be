@@ -3,6 +3,9 @@
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
+## Build rswag
+rake rswag:specs:swaggerize PATTERN="spec/**/*_spec.rb"
+
 Things you may want to cover:
 
 * Ruby version
