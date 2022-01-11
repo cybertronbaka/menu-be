@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     devise_for :users, controllers: {
       sessions: 'api/v1/sessions'
     }, json: true
+    devise_scope :user do
+      get :authenticated, controller: 'api/v1/sessions', action: :authenticated
+    end
   end
   post '/graphql', to: 'graphql#execute'
   namespace :api do
