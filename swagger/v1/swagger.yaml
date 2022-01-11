@@ -33,6 +33,25 @@ paths:
                     image:
                       type: string
                       example: The Image
+  "/api/v1/authenticated":
+    get:
+      summary: Checks if user is authenticated or not
+      tags:
+      - Auth
+      responses:
+        '200':
+          description: signs in
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      authenticated:
+                        type: boolean
+                        example: true
   "/api/v1/users/sign_in":
     post:
       summary: Signs in
