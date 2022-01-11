@@ -11,6 +11,11 @@ module Api
         render json: { data: { message: 'Signed In succesfully!' } }, status: 200 if resource
       end
 
+      def authenticated
+        self.resource = warden.authenticate(auth_options.merge(scope: :user))
+        render json: { data: { authenticated: resource.present? } }, status: 200
+      end
+
       def destroy
         return (raise Unauthenticated) unless current_user
 
