@@ -26,10 +26,34 @@ describe 'Rest: Signs in' do
       response '200', 'signs in' do
         schema type: :object,
                properties: {
-                 data: {
+                 user: {
                    type: :object,
                    properties: {
-                     message: { type: :string, example: 'Signed In succesfully!'}
+                     id: { type: :integer, example: 1 },
+                     email: { type: :string, example: 'sean.leannon@haag-oberbrunner.info' },
+                     mobile: { type: :string, example: '+975-17171717' },
+                     created_at: { type: :string, example: '2022-01-20T17:40:12.492Z' },
+                     updated_at: { type: :string, example: '2022-01-20T17:40:12.492Z' },
+                     profile_attributes: {
+                       type: :object,
+                       properties: {
+                         id: { type: :integer, example: 1 },
+                         name: { type: :string, example: 'Alvin' },
+                         address: { type: :string, example: 'Some address' },
+                         user_id: { type: :integer, example: 1 },
+                         created_at: { type: :string, example: '2022-01-20T17:40:12.492Z' },
+                         updated_at: { type: :string, example: '2022-01-20T17:40:12.492Z' },
+                       }
+                     },
+                     role_attributes: {
+                       type: :object,
+                       properties: {
+                         id: { type: :integer, example: 1 },
+                         name: { type: :string, example: 'super_admin', enum: %w[super_admin restuarant_owner] },
+                         created_at: { type: :string, example: '2022-01-20T17:40:12.492Z' },
+                         updated_at: { type: :string, example: '2022-01-20T17:40:12.492Z' }
+                       }
+                     }
                    }
                  }
                }
@@ -47,7 +71,6 @@ describe 'Rest: Signs in' do
           it 'logins' do |example|
             submit_request(example.metadata)
             expect(status).to eq(200)
-            expect(parsed.dig(:data, :message)).to eq('Signed In succesfully!')
             expect(cookies[:_session_id]).to_not be_nil
           end
         end
@@ -60,7 +83,7 @@ describe 'Rest: Signs in' do
                    type: :array,
                    items: {
                      oneOf: [
-                       { type: :string, example: 'Invalid Email or password.'}
+                       { type: :string, example: 'Invalid Email or password.' }
                      ]
                    }
                  }

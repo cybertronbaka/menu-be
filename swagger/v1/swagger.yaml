@@ -66,12 +66,63 @@ paths:
               schema:
                 type: object
                 properties:
-                  data:
+                  user:
                     type: object
                     properties:
-                      message:
+                      id:
+                        type: integer
+                        example: 1
+                      email:
                         type: string
-                        example: Signed In succesfully!
+                        example: sean.leannon@haag-oberbrunner.info
+                      mobile:
+                        type: string
+                        example: "+975-17171717"
+                      created_at:
+                        type: string
+                        example: '2022-01-20T17:40:12.492Z'
+                      updated_at:
+                        type: string
+                        example: '2022-01-20T17:40:12.492Z'
+                      profile_attributes:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: Alvin
+                          address:
+                            type: string
+                            example: Some address
+                          user_id:
+                            type: integer
+                            example: 1
+                          created_at:
+                            type: string
+                            example: '2022-01-20T17:40:12.492Z'
+                          updated_at:
+                            type: string
+                            example: '2022-01-20T17:40:12.492Z'
+                      role_attributes:
+                        type: object
+                        properties:
+                          id:
+                            type: integer
+                            example: 1
+                          name:
+                            type: string
+                            example: super_admin
+                            enum:
+                            - super_admin
+                            - restuarant_owner
+                          created_at:
+                            type: string
+                            example: '2022-01-20T17:40:12.492Z'
+                          updated_at:
+                            type: string
+                            example: '2022-01-20T17:40:12.492Z'
         '401':
           description: Could not sign in
           content:
