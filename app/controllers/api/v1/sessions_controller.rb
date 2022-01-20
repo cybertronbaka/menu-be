@@ -8,7 +8,7 @@ module Api
 
       def create
         self.resource = warden.authenticate!(auth_options)
-        render json: { data: { message: 'Signed In succesfully!' } }, status: 200 if resource
+        render json: resource, root: :user, serializer: ::UserDetailSerializer, status: 200 if resource
       end
 
       def authenticated
