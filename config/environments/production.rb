@@ -112,4 +112,12 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+  config.middleware.use(
+    ActionDispatch::Session::CookieStore,
+    key: '_nye_menu_session',
+    expire_after: 1.day,
+    serializer: :json,
+    secure: true,
+    same_site: :none
+  )
 end
