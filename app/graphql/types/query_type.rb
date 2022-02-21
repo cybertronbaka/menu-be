@@ -9,6 +9,7 @@ module Types
 
     # User
     field :users, resolver: Resolvers::Queries::UsersResolver
+    field :current_user, resolver: Resolvers::Queries::CurrentUserResolver
 
     # Menu
     field :my_menus, resolver: Resolvers::Queries::Menu::MenusResolver
