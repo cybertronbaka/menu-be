@@ -22,6 +22,8 @@ describe 'Queries: Current User' do
             createdAt
             updatedAt
             userId
+            description
+            picture
           }
         }
       }
