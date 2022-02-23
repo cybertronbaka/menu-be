@@ -37,6 +37,7 @@ describe 'Mutations: CreateRestaurantOwner' do
       expect_no_gql_errors
       expect(parsed.dig(:data, :createRestuarantOwner)).to_not be_nil
       expect(User.count).to eq(2)
+      expect(Menu.count).to eq(1)
     end
 
     it 'super admin creates a restaurant owner and can log in' do
