@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Queries: menu' do
   let!(:user) { create(:user) }
   let!(:owner1) { create(:user, :restuarant_owner) }
-  let!(:menu) { create(:menu, user: owner1) }
+  let!(:menu) { Menu.first }
   let!(:query) do
     <<~GQL
       query{

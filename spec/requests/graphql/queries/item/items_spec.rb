@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'Queries: items' do
   let!(:user) { create(:user) }
   let!(:owner1) { create(:user, :restuarant_owner) }
-  let!(:menu) { create(:menu, user: owner1) }
+  let!(:menu) { Menu.first }
   let!(:section) { create(:section, menu: menu) }
   let!(:item) { create(:item, section: section, rank: 2) }
   let!(:item2) { create(:item, section: section, rank: 1) }
