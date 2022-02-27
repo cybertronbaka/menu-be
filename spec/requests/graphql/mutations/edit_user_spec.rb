@@ -27,7 +27,7 @@ describe 'Mutations: CreateRestaurantOwner' do
 
   context 'Success' do
     it 'super admin creates a restaurant owner' do
-      sign_in(user)
+      sign_in(owner1)
       post '/graphql', params: { query: valid_mutation }
       expect_no_gql_errors
       expect(parsed.dig(:data, :editUser)).to_not be_nil

@@ -12,15 +12,13 @@ module Mutations
     type Types::Custom::User
 
     def resolve(id: nil, user_attributes: nil, profile_attributes: nil, menu_allowed: nil)
+      raise Unauthorized if context[:current_user].id != arguments[:id].to_i
+
       Resolvers::Mutations::EditUser.new(context, arguments).run
     end
 
     def ready?(**_args)
-      user_required && authorized
-    end
-
-    def is_authorized?
-      is_super_admin? || context[:current_user].id == arguments[:id]
+      user_required
     end
   end
 end
