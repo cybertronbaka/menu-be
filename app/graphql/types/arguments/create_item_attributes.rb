@@ -8,7 +8,7 @@ module Types
       argument :price, Float, required: true
       argument :pictures, [String], required: false
       argument :status, String, required: false
-      argument :vegType, String, required: false
+      argument :veg_type, String, required: false
     end
   end
 end
