@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   include RankConcern
+  default_scope { order(rank: :asc) }
 
   belongs_to :section
 
