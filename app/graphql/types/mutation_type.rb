@@ -12,11 +12,13 @@ module Types
     field :create_section, mutation: Mutations::Section::CreateSection
     field :edit_section, mutation: Mutations::Section::EditSection
     field :delete_section, mutation: Mutations::Section::DeleteSection
+    field :reorder_sections, mutation: Mutations::Section::ReorderSections
 
     # Item
     field :create_item, mutation: Mutations::Item::CreateItem
     field :edit_item, mutation: Mutations::Item::EditItem
     field :delete_item, mutation: Mutations::Item::DeleteItem
+    field :reorder_items, mutation: Mutations::Item::ReorderItems
 
     # Table
     # field :create_table, mutation: Mutations::Table::CreateTable
