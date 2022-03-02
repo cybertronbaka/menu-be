@@ -2,6 +2,7 @@
 
 class Section < ApplicationRecord
   include RankConcern
+  default_scope { order(rank: :asc) }
 
   belongs_to :menu
   has_many :items
