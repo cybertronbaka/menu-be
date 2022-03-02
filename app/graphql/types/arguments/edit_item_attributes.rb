@@ -8,6 +8,8 @@ module Types
       argument :price, Float, required: false
       argument :pictures, [String], required: false
       argument :rank, Integer, required: false
+      argument :status, String, required: false
+      argument :veg_type, String, required: false
     end
   end
 end
