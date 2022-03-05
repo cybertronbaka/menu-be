@@ -5,6 +5,16 @@ class Menu < ApplicationRecord
   has_many :sections
   has_many :tables
 
+  pg_search_scope :query, against: %i[name], using: {
+    trigram: {
+      threshold: 0.3,
+      word_similarity: true
+    },
+    tsearch: {
+      any_word: true
+    }
+  }
+
   validates_with MenuCountValidator, on: :create
 
   before_create :set_token, :attach_qr_code

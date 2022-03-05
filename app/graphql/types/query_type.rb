@@ -15,6 +15,7 @@ module Types
     field :my_menus, resolver: Resolvers::Queries::Menu::MenusResolver
     field :menu, resolver: Resolvers::Queries::Menu::MenuResolver
     field :menu_by_token, resolver: Resolvers::Queries::Menu::MenuByTokenResolver
+    field :all_menus, resolver: Resolvers::Queries::Menu::AllMenusResolver
 
     # Section
     field :sections, resolver: Resolvers::Queries::Section::SectionsResolver
