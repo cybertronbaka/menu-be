@@ -4,6 +4,7 @@ class Menu < ApplicationRecord
   belongs_to :user
   has_many :sections
   has_many :tables
+  include PgSearch::Model
 
   pg_search_scope :query, against: %i[name], using: {
     trigram: {
