@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class Order < ApplicationRecord
+  include PgSearch::Model
+  pg_search_scope :query, against: %i[mobile table_no]
+
   validates_presence_of :table_no, :total, :status
   validates :order_items, length: { minimum: 1 }
 

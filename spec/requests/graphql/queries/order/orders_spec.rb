@@ -9,7 +9,7 @@ describe 'Queries: Orders' do
   let!(:section) { create(:section, menu: menu) }
   let!(:item) { create(:item, section: section) }
 
-  let!(:pending_order1) { create(:order, :pending, restaurant_owner: owner1) }
+  let!(:pending_order1) { create(:order, :pending, restaurant_owner: owner1, mobile: '18818818') }
   let!(:pending_order2) { create(:order, :pending, restaurant_owner: owner1) }
 
   let!(:served_order1) { create(:order, :served, restaurant_owner: owner1) }
@@ -26,7 +26,7 @@ describe 'Queries: Orders' do
   def query(scope = 'all')
     <<~GQL
       query{
-        orders(scope: #{scope}, orderBy: id, orderDirection: desc) {
+        orders(scope: #{scope}, orderBy: id, orderDirection: desc, query: "18818818") {
           pageInfo {
             totalCount
             totalPages
