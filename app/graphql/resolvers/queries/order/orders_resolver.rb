@@ -27,7 +27,11 @@ module Resolvers
         private
 
         def queried
-          ::Order.where(restaurant_owner_id: context[:current_user]).send(arguments[:scope]).order(sort_hash).query(arguments[:query])
+          arguments[:query].blank? ? sorted_orders : sorted_orders.query(arguments[:query])
+        end
+
+        def sorted_orders
+          ::Order.where(restaurant_owner_id: context[:current_user]).send(arguments[:scope]).order(sort_hash)
         end
 
         def sort_hash

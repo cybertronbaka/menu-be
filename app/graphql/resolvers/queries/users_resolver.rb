@@ -11,8 +11,7 @@ module Resolvers
       argument :role_name, Types::Arguments::RoleName, required: true
 
       def resolve(**args)
-        # TODO: Search to be implemented
-        paginate(User.where(role_id: role_id).order(sort_hash),'users')
+        paginate(queried,'users')
       end
 
       def ready?(**_args)
@@ -24,6 +23,14 @@ module Resolvers
       end
 
       private
+
+      def queried
+        arguments[:query].blank? ? sorted_users : sorted_users.query(arguments[:query])
+      end
+
+      def sorted_users
+        User.where(role_id: role_id).order(sort_hash)
+      end
 
       def role_id
         @role_id ||= Role.find_by(name: arguments[:role_name] || 'restuarant_owner').id

@@ -2,7 +2,15 @@
 
 class Order < ApplicationRecord
   include PgSearch::Model
-  pg_search_scope :query, against: %i[mobile table_no]
+  pg_search_scope :query, against: %i[mobile table_no], using: {
+    trigram: {
+      threshold: 0.3,
+      word_similarity: true
+    },
+    tsearch: {
+      any_word: true
+    }
+  }
 
   validates_presence_of :table_no, :total, :status
   validates :order_items, length: { minimum: 1 }
