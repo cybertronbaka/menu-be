@@ -35,7 +35,7 @@ module Resolvers
         end
 
         def sort_hash
-          @sort_hash ||= { "#{arguments[:order_by] || 'create_at'}": arguments[:order_direction] || 'desc' }
+          @sort_hash ||= { "#{arguments[:order_by] || 'created_at'}": arguments[:order_direction] || 'desc' }
         end
       end
     end
