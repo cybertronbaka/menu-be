@@ -2,6 +2,7 @@ module Types
   class MutationType < Types::BaseObject
     field :create_restuarant_owner, mutation: Mutations::CreateRestuarantOwner
     field :edit_user, mutation: Mutations::EditUser
+    field :delete_user, mutation: Mutations::DeleteUser
 
     # Menu
     field :create_menu, mutation: Mutations::Menu::CreateMenu
