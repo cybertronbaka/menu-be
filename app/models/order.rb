@@ -20,7 +20,7 @@ class Order < ApplicationRecord
   belongs_to :restaurant_owner, class_name: 'User', foreign_key: :restaurant_owner_id, primary_key: :id
   has_many :order_items, dependent: :destroy
 
-  after_create :calculate_total
+  before_create :calculate_total
 
   def calculate_total
     self.total = order_items.inject(0) do |sum, order_item|
