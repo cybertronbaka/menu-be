@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
-
+  mount ActionCable.server => "/cable"
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
   scope 'api/v1' do
