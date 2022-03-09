@@ -37,5 +37,6 @@ module Types
     # Notification
     field :read_notification, mutation: Mutations::Notifications::ReadNotification
     field :mark_all_as_read, mutation: Mutations::Notifications::MarkAllAsRead
+    field :delete_notification, mutation: Mutations::Notifications::DeleteNotification
   end
 end
