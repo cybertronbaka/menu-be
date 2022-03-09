@@ -11,11 +11,9 @@ module ApplicationCable
     protected
 
     def find_verified_user
-      verified_user = authenticate_user_without_error
+      return reject_unauthorized_connection unless env['warden'].user
 
-      return verified_user if verified_user
-
-      reject_unauthorized_connection
+      env['warden'].user
     end
   end
 end

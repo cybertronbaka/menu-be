@@ -6,8 +6,8 @@ class CreateNotificationForOrderJob < ApplicationJob
     notification = Notification.create!(
       notification_type: 'food_orders',
       body: "You have received an order of Nu.#{order.total} from #{order.mobile}",
-      link: "/order-details/#{order.link}"
+      link: "/order-details/#{order.id}"
     )
-    ActionCable.server.broadcast "notifications_channel_#{order.user_id}", notification.as_json
+    ActionCable.server.broadcast "notifications_channel_#{order.restaurant_owner_id}", notification.as_json
   end
 end
