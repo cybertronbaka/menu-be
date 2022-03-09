@@ -10,7 +10,7 @@ describe 'Mutations: EditItem' do
   let!(:valid_mutation) do
     <<~GQL
       mutation {
-        editOrder(input: {id: #{order.id}, order: {status: served, tableNo: 2}}) {
+        editOrder(input: {id: #{order.id}, order: {status: "served", tableNo: 2}}) {
           id
           status
           mobile
@@ -27,7 +27,7 @@ describe 'Mutations: EditItem' do
   let!(:invalid_mutation) do
     <<~GQL
       mutation {
-        editOrder(input: {id: 3, order: {status: served, tableNo: 2}}) {
+        editOrder(input: {id: 3, order: {status: "served", tableNo: 2}}) {
           id
           status
           mobile

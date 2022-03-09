@@ -26,7 +26,7 @@ describe 'Queries: Orders' do
   def query(scope = 'all')
     <<~GQL
       query{
-        orders(scope: #{scope}, orderBy: id, orderDirection: desc, query: "18818818") {
+        orders(scope: #{scope}, orderBy: id, orderDirection: desc) {
           pageInfo {
             totalCount
             totalPages
