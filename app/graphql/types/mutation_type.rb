@@ -33,5 +33,8 @@ module Types
     # Order Item
     field :edit_order_item, mutation: Mutations::OrderItem::EditOrderItem
     field :delete_order_item, mutation: Mutations::OrderItem::DeleteOrderItem
+
+    # Notification
+    field :read_notification, mutation: Mutations::Notifications::ReadNotification
   end
 end
