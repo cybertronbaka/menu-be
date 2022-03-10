@@ -21,11 +21,16 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
 
   before_create :calculate_total
+  after_create :send_notification
 
   def calculate_total
     self.total = order_items.inject(0) do |sum, order_item|
       sum + order_item.item.price * order_item.quantity
     end
+  end
+
+  def send_notification
+    CreateNotificationForOrderJob.perform_later(self)
   end
 
   accepts_nested_attributes_for :order_items

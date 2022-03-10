@@ -36,5 +36,8 @@ module Types
     # OrderItem
     field :order_items, resolver: Resolvers::Queries::OrderItem::OrderItemsResolver
     field :order_item, resolver: Resolvers::Queries::OrderItem::OrderItemResolver
+
+    # Notification
+    field :my_notifications, resolver: Resolvers::Queries::Notifications::MyNotifications
   end
 end

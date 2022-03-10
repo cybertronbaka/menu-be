@@ -11,7 +11,7 @@ describe 'Mutations: EditOrderItem' do
   let!(:valid_mutation) do
     <<~GQL
       mutation {
-        editOrderItem(input: {id: #{OrderItem.first.id}, orderItem: {status: served, quantity: 2}}) {
+        editOrderItem(input: {id: #{OrderItem.first.id}, orderItem: {status: "served", quantity: 2}}) {
           id
           status
           quantity
@@ -33,7 +33,7 @@ describe 'Mutations: EditOrderItem' do
   let!(:invalid_mutation) do
     <<~GQL
       mutation {
-        editOrderItem(input: {id: 8, orderItem: {status: served, quantity: 2}}) {
+        editOrderItem(input: {id: 8, orderItem: {status: "served", quantity: 2}}) {
           id
           status
           quantity
