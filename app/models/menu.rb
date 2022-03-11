@@ -31,6 +31,6 @@ class Menu < ApplicationRecord
   end
 
   def attach_qr_code
-    self.qr_code = RQRCode::QRCode.new(token).as_png(size: 300).to_data_url
+    self.qr_code = QrCodeGenerator.new(token).run
   end
 end
