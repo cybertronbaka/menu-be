@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_03_09_103331) do
+ActiveRecord::Schema.define(version: 2022_03_11_162137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "fuzzystrmatch"
@@ -101,6 +101,7 @@ ActiveRecord::Schema.define(version: 2022_03_09_103331) do
     t.bigint "restaurant_owner_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
     t.index ["restaurant_owner_id"], name: "index_orders_on_restaurant_owner_id"
   end
 
