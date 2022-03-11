@@ -8,7 +8,7 @@ class QrCodeGenerator
   def run
     filename = "qr_#{Digest::SHA1.hexdigest([Time.now, rand, token].join)}_#{Time.now.strftime('%m_%d_%H_%M_%S')}.png"
     qr_composed.save(Rails.root.join("public/uploads/#{filename}"))
-    "#{ENV['HOST']}#{filename}"
+    "#{ENV['HOST']}/uploads/#{filename}"
   end
 
   def logo
