@@ -31,3 +31,23 @@ class QrCodeGenerator
     @qr_code ||= RQRCode::QRCode.new(token, level: :h).as_png(size: 450)
   end
 end
+
+# errors = []
+# Menu.all.each do |menu|
+#   begin
+#     file_name = QrCodeGenerator.new(menu.token).run
+#     menu.update!(qr_code: file_name)
+#   rescue => e
+#     errors << menu
+#   end
+# end
+
+# errors = []
+# OrderItem.all.each do |order|
+#   begin
+#     item = order.item
+#     order.update!(name: item.name, description: item.description, pictures: item.pictures, price: item.price)
+#   rescue => e
+#     errors << order
+#   end
+# end
