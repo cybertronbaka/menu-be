@@ -4,6 +4,7 @@ module Types
   module Custom
     class Order < BaseObject
       field :id, ID, null: false
+      field :name, String, null: true
       field :status, String, null: false
       field :mobile, String, null: true
       field :table_no, String, null: false

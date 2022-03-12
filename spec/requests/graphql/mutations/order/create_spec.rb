@@ -14,6 +14,7 @@ describe 'Mutations: CreateTable' do
           input: {
             token: "#{menu.token}",
             order: {
+              name: "Dorji Gyeltshen",
               tableNo: 1,
               mobile: "17171717",
               orderItemsAttributes: [
