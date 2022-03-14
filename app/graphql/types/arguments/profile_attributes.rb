@@ -4,6 +4,7 @@ module Types
       argument :name, String, required: true
       argument :address, String, required: true
       argument :description, String, required: false
+      argument :pictures, [String], required: false
     end
   end
 end
