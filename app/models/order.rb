@@ -36,6 +36,8 @@ class Order < ApplicationRecord
   end
 
   def send_order_through_ws
+    return unless pending?
+
     SendOrderThroughWsJob.perform_later(self)
   end
 
