@@ -2,7 +2,9 @@
 
 class Order < ApplicationRecord
   include PgSearch::Model
-  pg_search_scope :query, against: %i[mobile table_no], using: {
+  include BroadcastHelper
+
+  pg_search_scope :query, against: %i[mobile table_no name], using: {
     trigram: {
       threshold: 0.3,
       word_similarity: true
@@ -21,7 +23,7 @@ class Order < ApplicationRecord
   has_many :order_items, dependent: :destroy
 
   before_create :calculate_total
-  after_create :send_notification
+  after_create :send_notification, :send_order_through_ws
 
   def calculate_total
     self.total = order_items.inject(0) do |sum, order_item|
@@ -31,6 +33,14 @@ class Order < ApplicationRecord
 
   def send_notification
     CreateNotificationForOrderJob.perform_later(self)
+  end
+
+  def send_order_through_ws
+    SendOrderThroughWsJob.perform_later(self)
+  end
+
+  def broadcast
+    ActionCable.server.broadcast "orders_channel_#{restaurant_owner_id}", to_gql_json
   end
 
   accepts_nested_attributes_for :order_items

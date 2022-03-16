@@ -13,7 +13,10 @@ module Resolvers
 
         def resolve(**args)
           # TODO: Search to be implemented
-          paginate(queried, 'orders')
+          {
+            **paginate(queried, 'orders'),
+            total_today: sorted_orders.where(created_at: Date.today.all_day).sum(&:total)
+          }
         end
 
         def ready?(**_args)

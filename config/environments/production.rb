@@ -120,4 +120,5 @@ Rails.application.configure do
     secure: true,
     same_site: :none
   )
+  config.time_zone = 'Dhaka'
 end

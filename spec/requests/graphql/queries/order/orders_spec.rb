@@ -43,6 +43,7 @@ describe 'Queries: Orders' do
             createdAt
             updatedAt
           }
+          totalToday
         }
       }
     GQL
