@@ -38,5 +38,6 @@ module NyemenuBe
     config.api_only = true
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
+    config.eager_load_paths << Rails.root.join('lib')
   end
 end

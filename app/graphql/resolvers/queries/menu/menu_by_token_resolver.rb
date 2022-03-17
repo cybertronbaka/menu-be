@@ -9,7 +9,17 @@ module Resolvers
         argument :token, String, required: true
 
         def resolve(token: nil)
-          ::Menu.find_by!(token: arguments[:token].to_s)
+          raise StandardError, 'Your Subscription has been Cancelled! Please contact us to resolve this.' if cancelled?
+
+          menu
+        end
+
+        def menu
+          @menu ||= ::Menu.find_by!(token: arguments[:token].to_s)
+        end
+
+        def cancelled?
+          menu.user.cancelled?
         end
       end
     end

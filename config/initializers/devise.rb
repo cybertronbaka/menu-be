@@ -28,6 +28,8 @@ Devise.setup do |config|
   config.navigational_formats = [:json]
   config.warden do |manager|
     manager.failure_app = Devise::CustomFailureApp
+    manager.strategies.add(:subscription_guard, Devise::Strategies::SubscriptionGaurd)
+    manager.default_strategies(scope: :user).unshift :subscription_guard
   end
 
   # Configure the class responsible to send e-mails.

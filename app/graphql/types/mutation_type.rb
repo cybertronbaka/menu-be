@@ -5,6 +5,7 @@ module Types
     field :delete_user, mutation: Mutations::DeleteUser
     field :change_restaurant_owner_password, mutation: Mutations::SuperAdmin::ChangeUserPassword
     field :change_my_password, mutation: Mutations::ChangeMyPassword
+    field :cancel_user_subscription, mutation: Mutations::CancelUserSubscription
 
     # Menu
     field :create_menu, mutation: Mutations::Menu::CreateMenu
