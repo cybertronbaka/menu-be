@@ -14,7 +14,7 @@ module Devise
       private
 
       def cancelled?
-        params[:controller] == 'api/v1/sessions' && user.cancelled?
+        params[:controller] == 'api/v1/sessions' && user&.cancelled?
       end
 
       def user
