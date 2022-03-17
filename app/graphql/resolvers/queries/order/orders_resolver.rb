@@ -9,6 +9,8 @@ module Resolvers
         argument :order_by, Types::Arguments::Order::OrdersSortBy, required: false
         argument :order_direction, Types::Arguments::OrderDirection, required: false
         argument :scope, Types::Arguments::Order::OrderScopes, required: true
+        argument :start_date, String, required: false
+        argument :end_date, String, required: false
         argument :query, String, required: false
 
         def resolve(**args)
@@ -30,7 +32,13 @@ module Resolvers
         private
 
         def queried
-          arguments[:query].blank? ? sorted_orders : sorted_orders.query(arguments[:query])
+          arguments[:query].blank? ? date_filtered : date_filtered.query(arguments[:query])
+        end
+
+        def date_filtered
+          return sorted_orders unless arguments[:start_date] && arguments[:end_date]
+
+          sorted_orders.where(created_at: arguments[:start_date]..arguments[:end_date])
         end
 
         def sorted_orders
