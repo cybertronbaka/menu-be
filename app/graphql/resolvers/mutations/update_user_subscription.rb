@@ -2,10 +2,10 @@
 
 module Resolvers
   module Mutations
-    class CancelUserSubscription < BaseMutationResolver
+    class UpdateUserSubscription < BaseMutationResolver
       def run
-        user.update!(status: :cancelled)
-        user.invalidate_all_sessions!
+        user.update!(status: params[:status])
+        user.invalidate_all_sessions! if params[:status].to_sym == :cancelled
         user.reload
       end
 

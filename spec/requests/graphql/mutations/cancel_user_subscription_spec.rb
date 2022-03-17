@@ -6,8 +6,9 @@ describe 'Mutations: DeleteUser' do
   let!(:valid_mutation) do
     <<~GQL
       mutation {
-       cancelUserSubscription(input:{
-          id: 1
+       updateUserSubscription(input:{
+          id: #{owner_1.id},
+          status: "cancelled"
         })
         {
           id
@@ -20,7 +21,8 @@ describe 'Mutations: DeleteUser' do
       sign_in(user)
       post '/graphql', params: { query: valid_mutation }
       expect_no_gql_errors
-      expect(parsed.dig(:data, :cancelUserSubscription)).to_not be_nil
+      expect(parsed.dig(:data, :updateUserSubscription)).to_not be_nil
+      expect(owner_1.reload.status.to_sym).to eq(:cancelled)
     end
   end
 end

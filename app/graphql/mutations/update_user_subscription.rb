@@ -1,15 +1,16 @@
 # frozen_string_literal: true
 
 module Mutations
-  class CancelUserSubscription < BaseMutation
+  class UpdateUserSubscription < BaseMutation
     # arguments passed to the `resolve` method
     argument :id, ID, required: true
+    argument :status, String, required: true
 
     # return type from the mutation
     type Types::Custom::User
 
     def resolve(**args)
-      Resolvers::Mutations::CancelUserSubscription.new(context, arguments).run
+      Resolvers::Mutations::UpdateUserSubscription.new(context, arguments).run
     end
 
     def ready?(**_args)

@@ -7,6 +7,7 @@ module Types
       field :created_at, GraphQL::Types::ISO8601DateTime, null: false
       field :profile, ::Types::Custom::Profile, null: false
       field :role_id, ID, null: false, description: '1 means Super Admin. 2 means Restaurant Owner'
+      field :status, String, null: false, description: 'subscribed and cancelled'
     end
   end
 end
